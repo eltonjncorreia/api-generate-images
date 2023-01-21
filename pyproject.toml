@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "elton"
+version = "0.1.0"
+description = ""
+authors = ["eltonjncorreia <eltonjncorreia@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.0"
+fastapi = "^0.89.1"
+openai = "^0.26.1"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
+python-multipart = "^0.0.5"
+pillow = "^9.4.0"
+types-pillow = "^9.4.0.5"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
+black = {version = "^23.1a1", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
