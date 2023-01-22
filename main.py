@@ -1,13 +1,19 @@
 from PIL import Image
+from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, Form
 from io import BytesIO
 
 import openai
 import os
 
-openai.api_key = os.getenv("OPENAI_KEY")
+from config import get_settings
+from payload import Payload
 
+load_dotenv()
+
+settings = get_settings()
 app = FastAPI()
+openai.api_key = os.getenv("OPENAI_KEY")
 
 
 @app.post("/images/new/")
@@ -34,6 +40,18 @@ async def variation_image(file: UploadFile):
         )
 
         return response
+
+
+@app.post("/text/")
+async def completations(payload: Payload):
+    return openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=(f"{payload.prompt}: {payload.text}"),
+        max_tokens=150,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
 
 
 def resize_image(file: UploadFile):

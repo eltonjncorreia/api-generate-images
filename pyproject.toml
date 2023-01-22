@@ -13,6 +13,7 @@ uvicorn = {extras = ["standard"], version = "^0.20.0"}
 python-multipart = "^0.0.5"
 pillow = "^9.4.0"
 types-pillow = "^9.4.0.5"
+python-dotenv = "^0.21.1"
 
 
 [tool.poetry.group.dev.dependencies]
